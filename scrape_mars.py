@@ -81,7 +81,6 @@ def mars_facts():
 
 
 
-
 # Mars Hemispheres
 def mars_hemispheres(browser):
     url = 'https://marshemispheres.com/'
@@ -101,7 +100,6 @@ def mars_hemispheres(browser):
         hemisphere_image_urls.append(hemispheres)
         browser.back()
     return hemisphere_image_urls
-
 
 
 
