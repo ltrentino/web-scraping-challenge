@@ -17,36 +17,54 @@
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
 
-    <!-- Craigslist Listings -->
+    <!-- Mars News-->
     <div class="row" id="latest-news">
       <div class="col-md-12">
-        <h4 class="heading">{{mars.news_title}} {{mars.news_paragraph}}</h4>
+
+        <h4 class="heading">{{mars.news_title}}</h4>
+        <h5>{{mars.news_paragraph}}</h5>
        
       </div>
     </div>
+
+
+    <!-- Image -->
+    <div class="row" id="featured-image">
+        <div class="col-md-8">
+
+        <h4>Featured Mars Image</h4>
+        <img 
+            src = "{{mars.featured_image}}" 
+            class="img-responsive" 
+            alt="Responsive image"/>
+        </div>
+    </div>
+
+
+
+    <!-- Facts -->
+    <div class="row" id="mars-facts">
+        <div class="col-md-4">
+
+        <h4>Mars Facts</h4>
+        <table class="table table-bordered">{{mars.facts | safe }}</table> 
+        </div>
+    </div>
+
+
+    <!-- Hemispheres -->
+    {% for hemisphere in mars.hemispheres %}
+        <div class="col-md-6">
+          <div class="thumbnail">
+            <img src="{{hemisphere.img_url}}">
+            <div class="caption">
+              <h3>{{hemisphere.title}}</h3>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
 
   </div>
 </body>
 
 </html>
-
-
-
-{
-    'news_title': "NASA's Mars 2020 Rover Goes Coast-to-Coast to Prep for Launch", 
-    'news_paragraph': "The agency's first step in returning rocks from Mars just arrived at Kennedy Space Center. The Mars 2020 team now begins readying for a launch to the Red Planet this July.",
-    'featured_image': 'https://spaceimages-mars.com/image/featured/mars2.jpg',
-    'facts': '<table border="1" class="dataframe">\n  <thead>\n    <tr style="text-align: right;">\n      
-    <th></th>\n      <th>0</th>\n      <th>1</th>\n      <th>2</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>Mars - Earth 
-    Comparison</td>\n      <td>Mars</td>\n      <td>Earth</td>\n    </tr>\n    
-    <tr>\n      <th>1</th>\n      <td>Diameter:</td>\n      <td>6,779 km</td>\n      <td>12,742 km</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>Mass:</td>\n      <td>6.39 × 10^23 kg</td>\n      <td>5.97 × 10^24 kg</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>Moons:</td>\n      <td>2</td>\n      <td>1</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>Distance from Sun:</td>\n      <td>227,943,824 km</td>\n      <td>149,598,262 km</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>Length of Year:</td>\n      <td>687 Earth days</td>\n      <td>365.24 days</td>\n    </tr>\n    <tr>\n      <th>6</th>\n    
-      <td>Temperature:</td>\n      <td>-87 to -5 °C</td>\n      <td>-88 to 58°C</td>\n    </tr>\n  </tbody>\n</table>',
-    'hemispheres': [
-        {'title': 'Cerberus Hemisphere Enhanced',
-         'img_url': 'https://marshemispheres.com/images/cerberus_enhanced.tif'},
-        {'title': 'Schiaparelli Hemisphere Enhanced', 
-         'img_url': 'https://marshemispheres.com/images/schiaparelli_enhanced.tif'}, 
-        {'title': 'Syrtis Major Hemisphere Enhanced',
-         'img_url': 'https://marshemispheres.com/images/syrtis_major_enhanced.tif'},
-        {'title': 'Valles Marineris Hemisphere Enhanced',
-         'img_url': 'https://marshemispheres.com/images/valles_marineris_enhanced.tif'}]}

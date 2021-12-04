@@ -35,17 +35,12 @@ def scrape():
 def mars_news(browser):
     url = 'https://redplanetscience.com/'
     browser.visit(url)
-
     
     html = browser.html
     soup = bs(html, "html.parser")
     
-    try:
-        news_title = soup.find("div", class_= "content_title").text
-        news_p = soup.find("div", class_="article_teaser_body").text
-
-    except AttributeError:
-        return None, None
+    news_title = soup.find("div", class_= "content_title").text
+    news_p = soup.find("div", class_="article_teaser_body").text
 
     return news_title, news_p
 
@@ -58,12 +53,9 @@ def featured_image(browser):
     html = browser.html
     img_soup = bs(html, 'html.parser')
     
-    try: 
-        feautred_image_src = img_soup.find('img', class_="headerimage fade-in").get('src')
-    except AttibuteError:
-        return None
-    
+    feautred_image_src = img_soup.find('img', class_="headerimage fade-in").get('src')
     feautred_image_url = url+feautred_image_src
+
     return feautred_image_url
 
 
@@ -71,13 +63,12 @@ def featured_image(browser):
 # Mars Facts
 def mars_facts():
     url = "https://galaxyfacts-mars.com/"
-    try:
-        tables = pd.read_html(url)
-    except BaseException:
-        return None
-    
-    df = tables[0]
-    return df.to_html()
+    df = pd.read_html(url)[0]
+      
+    df.columns = ["Description", "Mars", "Earth"]
+    df.set_index("Description", inplace=True)
+
+    return df.to_html().replace('\n','')
 
 
 
