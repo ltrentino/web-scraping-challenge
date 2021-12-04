@@ -65,8 +65,8 @@ def mars_facts():
     url = "https://galaxyfacts-mars.com/"
     df = pd.read_html(url)[0]
       
-    df.columns = ["Description", "Mars", "Earth"]
-    df.set_index("Description", inplace=True)
+    df.columns = ["", " ", " "]
+    df.set_index("", inplace=True)
 
     return df.to_html().replace('\n','')
 
@@ -82,7 +82,7 @@ def mars_hemispheres(browser):
         browser.links.find_by_partial_text('Hemisphere')[h].click()
         html = browser.html
         soup = bs(html, "html.parser")
-        img_url = soup.find(class_='description').a.get('href')
+        img_url = soup.find('li').a.get('href')
         title = soup.find('h2', class_= "title").text
 
         hemispheres = {}
