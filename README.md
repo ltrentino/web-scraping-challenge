@@ -1,4 +1,5 @@
-# Web Scraping Homework - Mission to Mars
+# UWA DATA ANALYSIS COURSE
+# Web Scraping Homework
 
 ![mission_to_mars](Images/mission_to_mars.png)
 
